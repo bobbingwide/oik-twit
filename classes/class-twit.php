@@ -23,7 +23,6 @@ function twit( $atts, $content, $tag ) {
 	if ( null === $date ) {
 		$date = date( 'Y-m-d' );
 	} else {
-
 		$date = date( 'Y-m-d', strtotime( $date) );
 	}
 	span( 'twit' );
