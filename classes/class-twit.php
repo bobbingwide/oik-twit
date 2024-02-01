@@ -17,6 +17,13 @@ function load_sequences() {
 	$this->files=[ 'sequences/daysoftheweek.json' ];
 }
 
+function get_class_for_sequence( $sequence ) {
+	$classes = [ 'food-le.com' => 'wordle',
+		'foodlewordle.io' => 'wordle'];
+	$class = bw_array_get( $classes, $sequence, '');
+	return $class;
+}
+
 function twit( $atts, $content, $tag ) {
 	$sequence = bw_array_get_from( $atts, 'sequence,0', 'daysoftheweek');
 	$date = bw_array_get_from( $atts, 'date,1', null);
@@ -25,10 +32,17 @@ function twit( $atts, $content, $tag ) {
 	} else {
 		$date = date( 'Y-m-d', strtotime( $date) );
 	}
-	span( 'twit' );
+	$class = bw_array_get( $atts, 'class', $sequence );
+	//if ( $class ) {
+		$class = $this->get_class_for_sequence( $class );
+	//}
+	span( 'twit ' . $class );
 	//e( "twit $sequence $date" );
 	$this->load_sequence( $sequence );
 	$value = $this->get_sequence_value_for_date( $date );
+	if ( 'wordle' === $class ) {
+		$value = $this->letter_split( $value );
+	}
 	e( $value );
 	epan();
 	return bw_ret();
@@ -73,6 +87,17 @@ function get_date_diff( $new_date, $startdate ) {
 	//echo $interval->format('%R%a days');
 	return $date_diff;
 }
+
+function letter_split( $value ) {
+	$letters = '';
+	$length = strlen( $value );
+	for ( $i = 0; $i < $length; $i++ ) {
+		$letters .= '<span>';
+		$letters .= $value[$i];
+		$letters .= '</span>';
+	}
+	return $letters;
+ }
 
 
 }
