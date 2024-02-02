@@ -5,7 +5,7 @@
 * Tags: oik, plugin, unloader
 * Requires at least: 6.4.3
 * Tested up to: 6.4.3
-* Stable tag: 0.0.0
+* Stable tag: 0.1.0
 
 Today's word is this.
 
@@ -17,12 +17,11 @@ Displays the word or phrase for the given date projected from a predefined seque
 1. Activate the oik-twit plugin through the 'Plugins' menu in WordPress
 1. Use the [twit] shortcode to display today's word.
 
-
 ## Frequently Asked Questions 
 
 # What is this plugin for? 
 It was written to display the answers to two different Food based Wordles.
-The sequences you can chose are
+The sequences you can chose are:
 
 1. dayoftheweek - used to test the logic
 2. food-le.com - the sequence of 5 letter words used by food-le.com
@@ -32,7 +31,7 @@ For more information on how I made these sequences see https://herbmiller.me/foo
 
 # What are the parameters to the twit shortcode? 
 
-[twit sequence=dayoftheweek | food-le.com | foodle-wordle.io date="any date accepted by strftotime()" ]
+[twit sequence=daysoftheweek | food-le.com | foodlewordle.io date="any date accepted by strtotime()" ]
 
 These are positional; you don't have to specify the attribute name.
 
@@ -40,13 +39,22 @@ By default the plugin will display the value from the dayoftheweek sequence for 
 
 
 ## Screenshots 
-1. Coming soon
+1. days of the week - yesterday, today, tomorrow
+2. food-le.com - yesterday, today, tomorrow
+3. foodlewordle.io - yesterday, today, tomorrow
 
 ## Upgrade Notice 
+# 0.1.0 
+Update for ability to style Wordles based sequences
+
 # 0.0.0 
 Prototype version for herbmiller.me.
 
 ## Changelog 
+# 0.1.0 
+* Added: Early version to display phases of the moon #3
+* Changed: Support styling of wordle based words letter by letter #2
+
 # 0.0.0 
 * Added: Brand new plugin.
 * Tested: With WordPress 6.4.3
