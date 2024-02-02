@@ -4,7 +4,7 @@ Plugin Name: oik-twit
 Depends: oik base plugin
 Plugin URI: https://www.bobbingwide.com/blog/oik_plugins/oik-twit
 Description: Today's word is this.
-Version: 0.1.0
+Version: 0.2.0
 Author: bobbingwide
 Author URI: https://bobbingwide.com/about-bobbing-wide
 Text Domain: oik_twit

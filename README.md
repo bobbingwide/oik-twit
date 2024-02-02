@@ -5,7 +5,7 @@
 * Tags: oik, plugin, unloader
 * Requires at least: 6.4.3
 * Tested up to: 6.4.3
-* Stable tag: 0.1.0
+* Stable tag: 0.2.0
 
 Today's word is this.
 
@@ -44,6 +44,9 @@ By default the plugin will display the value from the dayoftheweek sequence for 
 3. foodlewordle.io - yesterday, today, tomorrow
 
 ## Upgrade Notice 
+# 0.2.0 
+Upgrade for automatic cache clearance when using SiteGround's Speed Optimizer ( sg-cachepress ).
+
 # 0.1.0 
 Update for ability to style Wordles based sequences
 
@@ -51,6 +54,9 @@ Update for ability to style Wordles based sequences
 Prototype version for herbmiller.me.
 
 ## Changelog 
+# 0.2.0 
+* Added: Add logic to clear the cache after midnight #4
+
 # 0.1.0 
 * Added: Early version to display phases of the moon #3
 * Changed: Support styling of wordle based words letter by letter #2
