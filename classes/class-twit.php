@@ -25,6 +25,7 @@ function get_class_for_sequence( $sequence ) {
 }
 
 function twit( $atts, $content, $tag ) {
+	$this->maybe_clear_cache();
 	$sequence = bw_array_get_from( $atts, 'sequence,0', 'daysoftheweek');
 	$date = bw_array_get_from( $atts, 'date,1', null);
 	if ( null === $date ) {
@@ -97,6 +98,48 @@ function letter_split( $value ) {
 		$letters .= '</span>';
 	}
 	return $letters;
+ }
+
+	/**
+	 * Clears the cache if it's a new day.
+	 *
+	 * Note: We call it's a new day first just to test the transient logic.
+	 * That might be a reasonable thing to do if there were multiple different cacheing solutions
+	 * to test for.
+	 *
+	 * @return void
+	 */
+ function maybe_clear_cache() {
+	 global $wp;
+	 /*
+	 $current_url = home_url( $wp->request );
+	 bw_trace2( $current_url, "current URL wp->request", false );
+	 */
+	if ( $this->its_a_new_day() ) {
+		if ( function_exists('sg_cachepress_purge_cache' ) ) {
+
+			sg_cachepress_purge_cache( get_home_url() );
+			$current_url = home_url( $wp->request );
+			bw_trace2( $current_url, "current URL", false );
+			sg_cachepress_purge_cache( $current_url );
+		}
+	}
+
+ }
+
+ function its_a_new_day() {
+	 $its_a_new_day = false;
+	 $cached_date = get_transient( 'oik-twit' );
+	 if ( false === $cached_date ) {
+		 $its_a_new_day = true;
+		 //$secs = bw_time_of_day_secs();
+		 extract( localtime( time(), true ));
+		 $secs = ((($tm_hour * 60) + $tm_min) * 60) + $tm_sec;
+		 $secs = 86400 - $secs;
+		 set_transient( 'oik-twit', date( 'Y-m-d'), $secs );
+	 }
+
+	return $its_a_new_day;
  }
 
 
